@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114168222233222410}
   - component: {fileID: 114709192356903394}
   - component: {fileID: 114402164709612108}
+  - component: {fileID: 114058375112042664}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -30,6 +31,53 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114058375112042664
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1008116967025570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114709192356903394}
+          m_MethodName: Show
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114709192356903394}
+          m_MethodName: Hide
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!114 &114168222233222410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -120,6 +168,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767a48159c8966748818f9b7d28a2639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atkType: 0
+  atkName: 
+  atk: 0
+  knock: 0
+  cost: 0
+  range: 0
   sprites:
   - {fileID: 21300000, guid: 73e3224ff0d60d64daa441b864527723, type: 3}
   - {fileID: 21300000, guid: 407d4eb12270d3e44a1f08ecbd63d291, type: 3}
@@ -142,6 +196,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a0191aa6525cdf64a8460fd93ce30937, type: 3}
   - {fileID: 21300000, guid: ef37d2acf4904b143a6a3099ac2b3433, type: 3}
   blankCard: {fileID: 21300000, guid: 853d85101cef81e49ae6c2b4e63d3e61, type: 3}
+  usable: 0
+  ID: 0
 --- !u!222 &222473464897925698
 CanvasRenderer:
   m_ObjectHideFlags: 1

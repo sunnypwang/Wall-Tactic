@@ -3,22 +3,56 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-    public List<int> hand;
-    private GameController gameController;
-    private int playerNo;
-    public void Initialize(int no, GameController controller)
-    {
-        gameController = controller;
-        hand = new List<int>();
-        playerNo = no;
-    }
+    public int hp;
+    public int playerType;
+    public int team;
+    private PlayerHand hand;
 
-    public void PlayDrawPhase()
+    private bool stun;//when wall rush
+
+    private int atkBuff;
+    private int atkBuffTurn;
+    private int moveBuff;
+    private int moveBuffTurn;
+    public bool move;
+    
+    // Use this for initialization
+    void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+    public bool isMove()
     {
-        int drawnCard = gameController.deck.Draw();
-        hand.Add(drawnCard);
-        print("draws " + drawnCard);
-        //gameObject.AddComponent(typeof(Card));
-        gameController.EndTurn();
+        return move;
     }
+    public bool isDead()
+    {
+        return this.hp <= 0;
+    }
+   
+    public bool isUseCard()
+    {
+        if (hand.numberInHand <= 0) return false;
+        if (stun)
+        {
+            stun = false;
+            return true;
+        }
+        return false;
+    }
+    public bool isCounter()
+    {
+
+        // what type of character
+        if (hand.numberInHand <= 0) return false;
+
+
+
+        else return true;
+    }
+    
 }

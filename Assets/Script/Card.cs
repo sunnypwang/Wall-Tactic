@@ -4,34 +4,44 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Card : MonoBehaviour {
 
-    private int atkType; //0 is Melee, 1 is target
-    private string atkName;
-    private int atk;
-    private int knock;
-    private int cost;
-    private int range;
+    public int atkType; //0 is Melee, 1 is target, 2 is self
+    public string atkName;
+    public int atk;
+    public int knock;
+    public int cost;
+    public int range;
     private GameController gameController;
-    public Sprite[] sprites;
-    public Sprite blankCard;
-    private bool usable;
+    //private CardPreview cardPreview;
+    public bool usable;
+    public int ID;
     public void Initialize(GameController controller)
     {
         gameController = controller;
+        //cardPreview = gameController.cardPreview;
     }
-    public void SetImage(int id)
+    public void SetCard(int id)
     {
-        if(id > 0)
+        ID = id;
+        if (id > 0)
         {
-            gameObject.GetComponent<Image>().sprite = sprites[id-1];
+            
+            gameObject.GetComponent<Image>().sprite = gameController.cardinfo.sprites[id];
             print("Set image " + id);
             usable = true;
+            atkType = gameController.cardinfo.atkType[id];
+            atkName = gameController.cardinfo.atkName[id];
+            atk = gameController.cardinfo.atk[id];
+            knock = gameController.cardinfo.knock[id];
+            cost = gameController.cardinfo.cost[id];
+            range = gameController.cardinfo.range[id];
         }
         else
         {
-            gameObject.GetComponent<Image>().sprite = blankCard;
-            print("Set image " + id);
+            gameObject.GetComponent<Image>().sprite = gameController.cardinfo.sprites[0];
+            print("Set image " + 0);
             usable = false;
         }
+       
     }
 
     public void DisableCard()
@@ -41,22 +51,34 @@ public class Card : MonoBehaviour {
     }
     public void EnableCard()
     {
-        print("card enabled");
+        //print("card enabled");
         gameObject.GetComponent<Button>().interactable = true;
     }
 
     public void UseCard()
     {
-        print("card used!");
-        SetImage(-1);
+        int i = ID;
+        print("card id" + i + " used!");
+        SetCard(-1);
+        DisableCard();
         gameController.player[gameController.currentPlayer].DecreaseNumberInHand();
-        gameController.EndTurn();
-        
+        gameController.PerformAction(i);
     }
 
     public bool isUsable()
     {
         return usable;
+    }
+
+    public void Show()
+    {
+        gameController.ShowPreview(gameObject.GetComponent<Image>().sprite);
+        
+    }
+    public void Hide()
+    {
+        gameController.HidePreview();
+        
     }
     //public Card(int id)
     //{
